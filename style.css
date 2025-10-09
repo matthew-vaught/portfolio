@@ -4,5 +4,28 @@ body {
 	 */
   font: 100%/1.5 system-ui;
   max-width: 100ch;
-  margin-inline: auto;
+  margin-inline: max(1em, (100% - 100ch) / 2);
+}
+
+nav {
+  display: flex;               /* activates Flexbox layout */
+  justify-content: space-around;  /* evenly spreads links across the bar */
+  align-items: center;          /* centers them vertically */
+  background-color: #f0f0f0;    /* optional: gives a bar background */
+  padding: 1em;                 /* adds some space around the links */
+}
+
+nav a {
+  text-decoration: none;        /* removes underlines */
+  color: black;                 /* link color */
+  font-weight: bold;
+}
+
+nav a:hover {
+  color: #0077cc;               /* changes color when hovered */
+}
+
+nav a.current {
+  color: #0077cc;
+  border-bottom: 2px solid #0077cc;
 }
