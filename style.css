@@ -7,25 +7,24 @@ body {
   margin-inline: max(1em, (100% - 100ch) / 2);
 }
 
+/* make sure we’re styling the nav that’s on this page */
 nav {
-  display: flex;               /* activates Flexbox layout */
-  justify-content: space-around;  /* evenly spreads links across the bar */
-  align-items: center;          /* centers them vertically */
-  background-color: #f0f0f0;    /* optional: gives a bar background */
-  padding: 1em;                 /* adds some space around the links */
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 1em;
+  border: 1px solid #ddd;   /* temp: visual proof it applied */
 }
 
-nav a {
-  text-decoration: none;        /* removes underlines */
-  color: black;                 /* link color */
+/* target only direct children anchors */
+nav > a {
+  display: block;           /* ensures consistent box behavior as flex items */
+  text-decoration: none;
+  color: black;
   font-weight: bold;
+  padding: 0.25rem 0.5rem;
 }
 
-nav a:hover {
-  color: #0077cc;               /* changes color when hovered */
-}
-
-nav a.current {
-  color: #0077cc;
-  border-bottom: 2px solid #0077cc;
-}
+nav > a:hover { color: #0077cc; }
+nav > a.current { color: #0077cc; border-bottom: 2px solid #0077cc; }
