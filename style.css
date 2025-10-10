@@ -103,3 +103,59 @@ h1, h2, h3, h4, h5, h6 {
   text-wrap: balance;
   font-weight: 600;
 }
+
+.resume-page header {
+  text-align: center;
+  margin-block: 2rem;
+}
+
+.resume-page header h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.25rem;
+}
+
+.resume-page header p {
+  font-size: 1rem;
+  margin: 0;
+  line-height: 1.4;
+}
+
+.resume-page section {
+  margin-block: 2rem;
+}
+
+.resume-page section > header h2 {
+  border-bottom: 2px solid oklch(55.906% 0.22438 292.066);
+  padding-bottom: 0.25rem;
+  margin-bottom: 1rem;
+  font-size: 1.4rem;
+}
+
+.resume-page article {
+  margin-bottom: 1.25rem;
+}
+
+.resume-page article h3 {
+  font-size: 1.1rem;
+  margin: 0;
+  font-weight: 600;
+}
+
+.resume-page article ul {
+  margin: 0.3rem 0 0.8rem 1.25rem;
+  padding: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+}
+
+.resume-page section ul li strong {
+  color: oklch(55.906% 0.22438 292.066);
+}
+
+.resume-page a {
+  color: oklch(55.906% 0.22438 292.066);
+  text-decoration: none;
+}
+.resume-page a:hover {
+  text-decoration: underline;
+}
