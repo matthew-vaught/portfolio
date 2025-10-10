@@ -14,7 +14,10 @@ body {
   background-color: #f0f0f0;
   padding: .5em;
   border-radius: 5px;
-  margin-bottom: 1em;
+  margin-bottom: 1px;
+  border-bottom-width: 1px;
+  border-bottom-style: solid;
+  border-bottom-color: oklch(80% 3% 200);
 }
 
 .nav_bar > a {
@@ -32,6 +35,6 @@ body {
 }
 
 .nav_bar > a.current {
-  border: 2px dotted rgb(96 139 168);
+  border-bottom: 0.4em oklch(80% 3% 200);
   background-color: rgb(96 139 168 / 0.4);
 }
