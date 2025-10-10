@@ -1,5 +1,5 @@
 html {
-  accent-color: var(oklch(55.906% 0.22438 292.066));
+  accent-color: oklch(55.906% 0.22438 292.066);
 }
 
 body {
@@ -34,7 +34,7 @@ body {
 }
 
 .nav_bar > a:hover {
-  border-bottom: var(oklch(55.906% 0.22438 292.066));
+  border-bottom: 1px solid oklch(55.906% 0.22438 292.066);
 }
 
 .nav_bar > a.current {
