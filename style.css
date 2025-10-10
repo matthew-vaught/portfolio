@@ -78,3 +78,28 @@ input, textarea, button, select {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(15em, 1fr));
 }
+
+.projects article {
+  display: grid;
+  grid-template-rows: subgrid;
+  grid-row: span 3;
+  gap: 1em;
+}
+
+.projects h2 {
+  margin: 0;
+}
+
+h1 {
+  font-size: 400%;
+  font-weight: 700;
+  line-height: 1.1;
+  text-wrap: balance;
+  margin-block: 0.5em;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  line-height: 1.1;
+  text-wrap: balance;
+  font-weight: 600;
+}
