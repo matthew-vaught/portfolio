@@ -47,8 +47,8 @@ body {
 }
 
 .nav_bar > a:hover::after {
-  height: .35rem;
-  color: oklch(55.906% 0.22438 292.066);
+  height: .15rem;
+  background-color: oklch(55.906% 0.22438 292.066);
 }
 
 .nav_bar > a.current {
