@@ -39,5 +39,5 @@ body {
 }
 
 .nav_bar > a.current {
-  border-bottom: .4em oklch(80% 3% 200);
+  border-bottom: 1px solid oklch(80% 3% 200);
 }
