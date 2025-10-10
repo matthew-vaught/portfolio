@@ -35,6 +35,7 @@ body {
 
 .nav_bar > a:hover {
   border-bottom: 1px solid oklch(55.906% 0.22438 292.066);
+  background-color: oklch(71.138% 0.13676 297.51);
 }
 
 .nav_bar > a.current {
