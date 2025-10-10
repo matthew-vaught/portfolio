@@ -59,24 +59,17 @@ input, textarea, button, select {
   font: inherit;
 }
 
-form label,
-form input,
-form textarea,
-form button {
-  display: block;
+.contact-form {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  align-items: center;
+  gap: 1rem 1rem;
+  max-width: 720px;
 }
 
-form input,
-form textarea {
-  width: 100%;
-}
-
-form input,
-form textarea,
-form button {
-  box-sizing: border-box;
-}
-
-form label {
-  margin-block: 0.75rem; /* vertical spacing between label groups */
+.contact-form label {
+  display: grid;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
+  margin: 0;
 }
