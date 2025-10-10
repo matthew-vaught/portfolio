@@ -39,8 +39,7 @@ body {
   right: 0;
   bottom: -1px;
   height: 0;
-  background: oklch(80% 3% 200);
-  transition: height .2s ease;
+  background: oklch(55.906% 0.22438 292.066);
 }
 
 .nav_bar > a:hover {
