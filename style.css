@@ -54,3 +54,29 @@ body {
 .nav_bar > a.current {
   border-bottom: 1px solid oklch(80% 3% 200);
 }
+
+input, textarea, button, select {
+  font: inherit;
+}
+
+form label,
+form input,
+form textarea,
+form button {
+  display: block;
+}
+
+form input,
+form textarea {
+  width: 100%;
+}
+
+form input,
+form textarea,
+form button {
+  box-sizing: border-box;
+}
+
+form label {
+  margin-block: 0.75rem; /* vertical spacing between label groups */
+}
