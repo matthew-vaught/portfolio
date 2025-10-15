@@ -45,6 +45,11 @@ body {
   background: oklch(55.906% 0.22438 292.066);
 }
 
+.nav_bar > a:link,
+.nav_bar > a:visited {
+  color: inherit;
+}
+
 .nav_bar > a:hover {
   background-color: oklch(71.138% 0.13676 297.51);
 }
