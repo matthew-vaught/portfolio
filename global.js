@@ -27,6 +27,7 @@ const BASE_PATH = (location.hostname === "localhost" || location.hostname === "1
   : "/portfolio/";         // GitHub Pages repo name
 
 let nav = document.createElement('nav');
+nav.className = 'nav_bar'
 document.body.prepend(nav);
 
 for (let p of pages) {
