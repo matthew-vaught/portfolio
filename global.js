@@ -47,3 +47,43 @@ for (let p of pages) {
   }
   nav.append(a);
 }
+
+function automaticLabel() {
+  return matchMedia("(prefers-color-scheme: dark)").matches
+    ? "Automatic (Dark)"
+    : "Automatic (Light)";
+}
+
+document.body.insertAdjacentHTML(
+  "afterbegin",
+  `
+  <label class="color-scheme">
+    Theme:
+    <select id="theme-select" aria-label="Theme">
+      <option value="light dark">${automaticLabel()}</option>
+      <option value="light">Light</option>
+      <option value="dark">Dark</option>
+    </select>
+  </label>
+  `
+);
+
+// Step 4.4 — wire up the select
+const select = document.querySelector('#theme-select');
+
+select.addEventListener('input', (event) => {
+  console.log('color scheme changed to', event.target.value);
+
+  // Set the CSS property on the root element <html>
+  document.documentElement.style.setProperty('color-scheme', event.target.value);
+
+  // Step 4.5 — persist the choice
+  localStorage.colorScheme = event.target.value;
+});
+
+// Step 4.5 — restore saved preference on load
+if ('colorScheme' in localStorage) {
+  const saved = localStorage.colorScheme;
+  document.documentElement.style.setProperty('color-scheme', saved);
+  select.value = saved;   // keep the dropdown in sync
+}
