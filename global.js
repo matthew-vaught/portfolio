@@ -29,3 +29,10 @@ for (let p of pages) {
   let title = p.title;
   nav.insertAdjacentHTML('beforeend', `<a href="${url}">${title}</a>`);
 }
+
+const BASE_PATH = (location.hostname === "localhost" || location.hostname === "127.0.0.1")
+  ? "/"                  // Local server
+  : "/website/";         // GitHub Pages repo name
+
+  
+url = !url.startsWith('http') ? BASE_PATH + url : url;
