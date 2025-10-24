@@ -23,6 +23,7 @@ export function renderProjects(project, containerElement, headingLevel = 'h2') {
   containerElement.appendChild(article);
 }
 
-// TEMP: expose to console for Step 6 testing
+// TEMP for Step 6 console testing
 window.projects = projects;
 window.renderProjects = renderProjects;
+console.log('projects + renderProjects exposed to window');
