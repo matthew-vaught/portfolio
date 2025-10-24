@@ -96,7 +96,26 @@ export async function fetchJSON(url) {
     if (!response.ok) {
       throw new Error(`Failed to fetch projects: ${response.statusText}`);
     }
+    const data = await response.json();
+    return data;
   } catch (error) {
     console.error('Error fetching or parsing JSON data:', error);
   }
+}
+
+export function renderProjects(project, containerElement, headingLevel = 'h2') {
+  if (!containerElement) return;
+
+  const allowed = new Set(['h1','h2','h3','h4','h5','h6']);
+  const tag = allowed.has(String(headingLevel).toLowerCase()) ? headingLevel.toLowerCase() : 'h2';
+
+  containerElement.innerHTML = '';
+
+  const article = document.createElement('article');
+  article.innerHTML = `
+    <${tag}>${project.title ?? 'Untitled Project'}</${tag}>
+    <img src="${project.image ?? ''}" alt="${project.title ?? 'project image'}">
+    <p>${project.description ?? ''}</p>
+  `;
+  containerElement.appendChild(article);
 }
