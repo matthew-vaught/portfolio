@@ -1,62 +1,62 @@
 [
     {
-        "title": "Lorem ipsum dolor sit.",
+        "title": "Campus Energy Analytics Dashboard",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Inventore animi assumenda tenetur quis. Labore iusto, dignissimos, quae dolorem ut officia cumque minima blanditiis ad quasi praesentium possimus provident consequuntur culpa?"
+        "description": "Led a data analytics project visualizing power consumption from 500 smart plugs across UC San Diego. Built interactive weekly heatmaps and animated visualizations in Python to uncover trends in building energy efficiency, using Pandas, NumPy, and Bokeh."
     },
     {
-        "title": "Nulla accusamus debitis reprehenderit!",
+        "title": "Southern California Edison Circuit Anomaly Detection Pipeline",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Deleniti, optio? Debitis consequuntur nam corporis numquam dolorum qui quidem modi consequatur, officiis repellendus, iusto ut maiores ipsam! Illum debitis cupiditate omnis alias doloribus repellat veritatis odio reiciendis unde? Molestias."
+        "description": "Developed an automated pipeline to cleanse and classify 40M+ yearly circuit load datapoints using Random Forests, rolling z-scores, and change-point detection. Reduced manual engineer hours by 1,000+ annually while identifying permanent and temporary load transfers."
     },
     {
-        "title": "A nemo consectetur error.",
+        "title": "Evolution of NBA Power Forwards (2013–2024)",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Voluptates, vero corrupti ratione aspernatur aliquid deleniti! Facilis ratione doloremque, odio quas repellat fugit voluptas tempora sit ea veniam cumque velit aliquid odit sint nemo. Incidunt ipsa voluptas praesentium dolor!"
+        "description": "Awarded UCSD HDSI Research Scholarship for a decade-long analysis of NBA power forwards’ playstyles. Scraped Basketball-Reference and NBA.com data, standardized stats, and used PCA, Ward’s clustering, and gap statistic analysis to study shifts in player archetypes."
     },
     {
-        "title": "Unde quam quia nam.",
+        "title": "Submarine Defense Optimization – Boeing Internship Project",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Error voluptas reprehenderit commodi alias voluptate rerum voluptatum doloremque minima assumenda! Deleniti magni perferendis accusantium porro dignissimos incidunt laboriosam laudantium corporis inventore officia voluptas, quo id numquam? Nulla, accusantium repellat."
+        "description": "Independently simulated submarine defense scenarios in Systems Toolkit (STK) to identify cost-effective countermeasure strategies. Created an optimized configuration 75% more effective than the baseline setup while collaborating with seven other interns under a shared mentor."
     },
     {
-        "title": "Ut molestias ea commodi?",
+        "title": "NBA Archetype Clustering Visualization",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Sit fuga repudiandae, maiores dolorum earum quos perferendis laborum totam architecto saepe ipsa blanditiis id doloribus ex, quidem sequi deleniti explicabo? Similique est officia et repellendus maiores asperiores inventore error."
+        "description": "Designed interactive dashboards visualizing player clusters and shot distributions using Plotly and Bokeh. Highlighted playstyle evolution across seasons, integrating PCA-reduced features with dynamic legends and filters for exploratory comparison."
     },
     {
-        "title": "Illo, possimus fuga? Dolorum.",
+        "title": "Campus Energy Correlation Analysis",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Nobis rem mollitia expedita quis at obcaecati quaerat, dolorum quia assumenda in aspernatur voluptatibus ad provident non eos adipisci reiciendis recusandae quasi placeat veritatis, similique accusamus. Vero id quisquam ratione."
+        "description": "Analyzed relationships between smart plug readings and total building loads using Pearson correlation coefficients. Demonstrated how local plug usage patterns relate to overall building consumption trends through statistical and visual analysis."
     },
     {
-        "title": "Cupiditate dolore quas explicabo.",
+        "title": "Dynamic Power Consumption Heatmap Animation",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Molestiae, consequatur neque harum impedit magnam veniam pariatur sapiente quae aut iure atque, esse, est natus sed beatae magni vitae molestias totam alias! Cupiditate explicabo at dolorem perferendis quidem quos?"
+        "description": "Created animated heatmaps illustrating average plug usage for each building across an entire week. Built a temporal visualization pipeline using Matplotlib’s animation module and color-scaled legends to communicate energy patterns effectively."
     },
     {
-        "title": "Sapiente quisquam vel molestiae.",
+        "title": "Basketball Data Web Scraping Framework",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Nihil, ad soluta distinctio dolorum iste, qui illum corrupti officia facere eaque provident. Cum laborum aperiam voluptas recusandae, assumenda repellat fugit, beatae, eum itaque excepturi quisquam nisi veniam eaque doloremque."
+        "description": "Engineered a robust Selenium-based scraping pipeline to collect advanced stats from Basketball-Reference. Implemented retry logic for stalled pages and formatted data into structured Pandas DataFrames for multi-season analysis."
     },
     {
-        "title": "Doloremque corrupti delectus ratione.",
+        "title": "SQL Airline Database Analysis",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Impedit, recusandae accusantium culpa non iste consequuntur eligendi est ea numquam pariatur, similique distinctio corrupti quam repellat. Natus praesentium quis quasi eveniet, laborum dolores explicabo vitae laboriosam, qui, voluptatibus itaque."
+        "description": "Designed SQL queries to analyze carrier performance, route networks, and cancellation rates using JOINs, subqueries, and aggregate functions. Gained insights into flight patterns and operational reliability through structured relational analysis."
     },
     {
-        "title": "Ullam omnis aspernatur voluptatem.",
+        "title": "Deceptive Visualization: Temperature Trends by Country",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Amet accusamus, earum, dolorum aliquam debitis fugit nisi enim sequi, corporis a autem ipsum explicabo beatae expedita illo. Nihil, debitis possimus quaerat iste eum facere blanditiis repellendus vero recusandae id."
+        "description": "Created dual line plots highlighting deceptive visual framing in climate data. Compared U.S. temperature trends versus top-GDP countries while manipulating time scales and y-axis ranges to illustrate the power of design bias in data visualization."
     },
     {
-        "title": "Ratione ab libero accusamus.",
+        "title": "Food Processing and Pricing Visualization",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Quae, quibusdam quia, pariatur, repudiandae saepe voluptates ab eveniet dolorum distinctio nam vitae. Doloribus provident explicabo magnam pariatur, quisquam adipisci reiciendis, hic repellat fugit harum sapiente voluptates exercitationem tempore eos!"
+        "description": "Developed grouped bar charts analyzing the relationship between food processing level and product price across grocery chains. Emphasized data storytelling by customizing color palettes, spacing, and annotated titles using Matplotlib."
     },
     {
-        "title": "Necessitatibus ad eius facere.",
+        "title": "Personal Portfolio Website",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
-        "description": "Assumenda vero dolores est atque omnis! Voluptate sequi quis corporis praesentium incidunt expedita qui quia exercitationem debitis cumque neque distinctio, optio nemo porro dolor, possimus dolorem? Dignissimos, ex quis. Aperiam."
+        "description": "Built a responsive personal portfolio in HTML, CSS, and JavaScript with navigation, project galleries, and resume integration. Styled using flexbox and custom hover effects for a polished and cohesive user experience."
     }
 ]
