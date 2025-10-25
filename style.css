@@ -213,3 +213,13 @@ h1, h2, h3, h4, h5, h6 {
   color: oklch(55.906% 0.22438 292.066);
   border-bottom-color: currentColor;
 }
+
+.profile-stats {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: .75rem 1.5rem;
+  margin: 0;
+  padding: 0;
+}
+.profile-stats dt { font-weight: 700; text-transform: uppercase; font-size: .9rem; }
+.profile-stats dd { margin: 0; font-size: 1.5rem; }
