@@ -6,7 +6,5 @@ const projectsContainer = document.querySelector('.projects');
 
 renderProjects(projects, projectsContainer, 'h2');
 
-// TEMP for Step 6 console testing
-window.projects = projects;
-window.renderProjects = renderProjects;
-console.log('projects + renderProjects exposed to window');
+const titleElement = document.querySelector('.projects-title');
+titleElement.textContent = `${projects.length} Projects`;
