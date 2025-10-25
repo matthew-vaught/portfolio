@@ -4,7 +4,7 @@ const projects = await fetchJSON('../lib/projects.json');
 
 const projectsContainer = document.querySelector('.projects');
 
-renderProjects(projects[0], projectsContainer, 'h2');
+renderProjects(projects, projectsContainer, 'h2');
 
 // TEMP for Step 6 console testing
 window.projects = projects;

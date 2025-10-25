@@ -103,19 +103,25 @@ export async function fetchJSON(url) {
   }
 }
 
-export function renderProjects(project, containerElement, headingLevel = 'h2') {
+export function renderProjects(projects, containerElement, headingLevel = 'h2') {
   if (!containerElement) return;
 
   const allowed = new Set(['h1','h2','h3','h4','h5','h6']);
-  const tag = allowed.has(String(headingLevel).toLowerCase()) ? headingLevel.toLowerCase() : 'h2';
+  const tag = allowed.has(String(headingLevel).toLowerCase())
+    ? headingLevel.toLowerCase()
+    : 'h2';
 
+  // clear existing content
   containerElement.innerHTML = '';
 
-  const article = document.createElement('article');
-  article.innerHTML = `
-    <${tag}>${project.title ?? 'Untitled Project'}</${tag}>
-    <img src="${project.image ?? ''}" alt="${project.title ?? 'project image'}">
-    <p>${project.description ?? ''}</p>
-  `;
-  containerElement.appendChild(article);
+  // loop through all projects
+  for (const project of projects) {
+    const article = document.createElement('article');
+    article.innerHTML = `
+      <${tag}>${project.title ?? 'Untitled Project'}</${tag}>
+      <img src="${project.image ?? ''}" alt="${project.title ?? 'project image'}">
+      <p>${project.description ?? ''}</p>
+    `;
+    containerElement.appendChild(article);
+  }
 }
