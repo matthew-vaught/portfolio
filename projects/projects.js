@@ -17,18 +17,18 @@ let arc = arcGenerator({
   endAngle: 2 * Math.PI,
 });
 
-let data = [1, 2];
+let data = [1, 2, 3, 4, 5, 5];
 let sliceGenerator = d3.pie();
 let arcData = sliceGenerator(data);
 let arcs = arcData.map((d) => arcGenerator(d));
 
-let colors = ['gold', 'purple'];
+let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
 arcs.forEach((arc, idx) => {
   d3.select('#projects-pie-plot')
     .append('path')
     .attr('d', arc)
-    .attr('fill', colors[idx])
+    .attr('fill', colors(idx))
     .attr('stroke', 'white')
     .attr('stroke-width', 1);
 });
