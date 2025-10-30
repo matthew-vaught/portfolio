@@ -10,5 +10,5 @@ const titleElement = document.querySelector('.projects-title');
 titleElement.textContent = `${projects.length} Projects`;
 
 <svg id="projects-pie-plot" viewBox="-50 -50 100 100">
-  <circle cx="0" cy="0" r="50" fill="red" />
+  <path d="M -50 0 A 50 50 0 0 1 50 0 A 50 50 0 0 1 -50 0" fill="red" />
 </svg>
