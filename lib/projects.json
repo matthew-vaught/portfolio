@@ -1,61 +1,73 @@
 [
     {
         "title": "Campus Energy Analytics Dashboard",
+        "year": "2023",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Led a data analytics project visualizing power consumption from 500 smart plugs across UC San Diego. Built interactive weekly heatmaps and animated visualizations in Python to uncover trends in building energy efficiency, using Pandas, NumPy, and Bokeh."
     },
     {
         "title": "Southern California Edison Circuit Anomaly Detection Pipeline",
+        "year": "2025",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Developed an automated pipeline to cleanse and classify 40M+ yearly circuit load datapoints using Random Forests, rolling z-scores, and change-point detection. Reduced manual engineer hours by 1,000+ annually while identifying permanent and temporary load transfers."
     },
     {
         "title": "Evolution of NBA Power Forwards (2013–2024)",
+        "year": "2024",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Awarded UCSD HDSI Research Scholarship for a decade-long analysis of NBA power forwards’ playstyles. Scraped Basketball-Reference and NBA.com data, standardized stats, and used PCA, Ward’s clustering, and gap statistic analysis to study shifts in player archetypes."
     },
     {
         "title": "Submarine Defense Optimization – Boeing Internship Project",
+        "year": "2022",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Independently simulated submarine defense scenarios in Systems Toolkit (STK) to identify cost-effective countermeasure strategies. Created an optimized configuration 75% more effective than the baseline setup while collaborating with seven other interns under a shared mentor."
     },
     {
         "title": "NBA Archetype Clustering Visualization",
+        "year": "2024",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Designed interactive dashboards visualizing player clusters and shot distributions using Plotly and Bokeh. Highlighted playstyle evolution across seasons, integrating PCA-reduced features with dynamic legends and filters for exploratory comparison."
     },
     {
         "title": "Campus Energy Correlation Analysis",
+        "year": "2023",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Analyzed relationships between smart plug readings and total building loads using Pearson correlation coefficients. Demonstrated how local plug usage patterns relate to overall building consumption trends through statistical and visual analysis."
     },
     {
         "title": "Dynamic Power Consumption Heatmap Animation",
+        "year": "2023",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Created animated heatmaps illustrating average plug usage for each building across an entire week. Built a temporal visualization pipeline using Matplotlib’s animation module and color-scaled legends to communicate energy patterns effectively."
     },
     {
         "title": "Basketball Data Web Scraping Framework",
+        "year": "2024",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Engineered a robust Selenium-based scraping pipeline to collect advanced stats from Basketball-Reference. Implemented retry logic for stalled pages and formatted data into structured Pandas DataFrames for multi-season analysis."
     },
     {
         "title": "SQL Airline Database Analysis",
+        "year": "2024",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Designed SQL queries to analyze carrier performance, route networks, and cancellation rates using JOINs, subqueries, and aggregate functions. Gained insights into flight patterns and operational reliability through structured relational analysis."
     },
     {
         "title": "Deceptive Visualization: Temperature Trends by Country",
+        "year": "2025",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Created dual line plots highlighting deceptive visual framing in climate data. Compared U.S. temperature trends versus top-GDP countries while manipulating time scales and y-axis ranges to illustrate the power of design bias in data visualization."
     },
     {
         "title": "Food Processing and Pricing Visualization",
+        "year": "2025",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Developed grouped bar charts analyzing the relationship between food processing level and product price across grocery chains. Emphasized data storytelling by customizing color palettes, spacing, and annotated titles using Matplotlib."
     },
     {
         "title": "Personal Portfolio Website",
+        "year": "2025",
         "image": "https://vis-society.github.io/labs/2/images/empty.svg",
         "description": "Built a responsive personal portfolio in HTML, CSS, and JavaScript with navigation, project galleries, and resume integration. Styled using flexbox and custom hover effects for a polished and cohesive user experience."
     }
