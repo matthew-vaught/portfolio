@@ -231,6 +231,7 @@ h1, h2, h3, h4, h5, h6 {
   overflow: visible;
 }
 
+/* Existing legend styles (keep these) */
 .legend {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
@@ -239,6 +240,10 @@ h1, h2, h3, h4, h5, h6 {
   padding: 0.75rem 1rem;
   margin-top: 1.5rem;
   list-style: none;
+
+  /* new additions for side-by-side layout */
+  flex: 1;
+  min-width: 12em;
 }
 
 /* Each individual list item */
@@ -256,4 +261,14 @@ h1, h2, h3, h4, h5, h6 {
   background-color: var(--color);
   display: inline-block;
   border-radius: 50%;
+}
+
+/* New container for pie chart + legend */
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+  margin-block: 2rem;
 }
