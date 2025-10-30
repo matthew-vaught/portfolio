@@ -230,3 +230,30 @@ h1, h2, h3, h4, h5, h6 {
 
   overflow: visible;
 }
+
+.legend {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(9em, 1fr));
+  gap: 0.75rem 1.25rem; /* larger grid gap */
+  border: 1px solid color-mix(in oklch, CanvasText 20%, Canvas);
+  padding: 0.75rem 1rem;
+  margin-top: 1.5rem;
+  list-style: none;
+}
+
+/* Each individual list item */
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem; /* smaller than legend gap */
+  font-size: 0.95rem;
+}
+
+/* The color swatch */
+.legend-item .swatch {
+  width: 1em;
+  aspect-ratio: 1 / 1;
+  background-color: var(--color);
+  display: inline-block;
+  border-radius: 50%;
+}
