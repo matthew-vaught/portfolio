@@ -50,3 +50,21 @@ data.forEach((d, idx) => {
     .attr('class', 'legend-item')
     .html(`<span class="swatch"></span> ${d.label} <em>(${d.value})</em>`); // set the inner html of <li>
 });
+
+let query = '';
+
+let searchInput = document.querySelector('.searchBar');
+
+searchInput.addEventListener('change', (event) => {
+  // update query value
+  query = event.target.value;
+
+  // filter projects (case-insensitive, across all metadata)
+  let filteredProjects = projects.filter((project) => {
+    let values = Object.values(project).join('\n').toLowerCase();
+    return values.includes(query.toLowerCase());
+  });
+
+  // render filtered projects
+  renderProjects(filteredProjects, projectsContainer, 'h2');
+});
