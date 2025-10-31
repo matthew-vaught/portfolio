@@ -231,6 +231,18 @@ h1, h2, h3, h4, h5, h6 {
   overflow: visible;
 }
 
+/* --- Pie chart hover interaction --- */
+
+/* Smooth transition for slice opacity */
+#projects-pie-plot path {
+  transition: 300ms;
+}
+
+/* When one slice (path) is hovered, fade out the others */
+#projects-pie-plot:has(path:hover) path:not(:hover) {
+  opacity: 0.5;
+}
+
 /* Existing legend styles (keep these) */
 .legend {
   display: grid;
