@@ -284,3 +284,12 @@ h1, h2, h3, h4, h5, h6 {
   flex-wrap: wrap;
   margin-block: 2rem;
 }
+
+/* --- Highlight selected wedge --- */
+.selected {
+  --color: oklch(60% 45% 0) !important;
+}
+
+.selected:is(path) {
+  fill: var(--color);
+}

@@ -43,13 +43,30 @@ function renderPieChart(projectsGiven) {
   let arcs = arcData.map((d) => arcGenerator(d));
   let colors = d3.scaleOrdinal(d3.schemeTableau10);
 
-  arcs.forEach((arc, idx) => {
+  // Add selection interaction
+  let selectedIndex = -1;
+
+  arcs.forEach((arc, i) => {
     newSVG
       .append('path')
       .attr('d', arc)
-      .attr('fill', colors(idx))
+      .attr('fill', colors(i))
       .attr('stroke', 'white')
-      .attr('stroke-width', 1);
+      .attr('stroke-width', 1)
+      .on('click', () => {
+        // Toggle selected index (deselect if clicked again)
+        selectedIndex = selectedIndex === i ? -1 : i;
+
+        // Update the selected state of all wedges
+        newSVG
+          .selectAll('path')
+          .attr('class', (_, idx) => (idx === selectedIndex ? 'selected' : ''));
+
+        // Update the selected state of legend items
+        d3.select('.legend')
+          .selectAll('li')
+          .attr('class', (_, idx) => (idx === selectedIndex ? 'legend-item selected' : 'legend-item'));
+      });
   });
 
   // Create legend
