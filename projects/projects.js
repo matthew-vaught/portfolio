@@ -66,6 +66,15 @@ function renderPieChart(projectsGiven) {
         d3.select('.legend')
           .selectAll('li')
           .attr('class', (_, idx) => (idx === selectedIndex ? 'legend-item selected' : 'legend-item'));
+
+        // Filter projects based on selected year
+        if (selectedIndex === -1) {
+          renderProjects(projectsGiven, projectsContainer, 'h2');
+        } else {
+          let selectedYear = newData[selectedIndex].label;
+          let filteredByYear = projectsGiven.filter((d) => d.year === selectedYear);
+          renderProjects(filteredByYear, projectsContainer, 'h2');
+        }
       });
   });
 
