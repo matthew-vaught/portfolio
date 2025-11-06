@@ -365,3 +365,14 @@ circle {
   transform-box: fill-box;
 }
 circle:hover { transform: scale(1.5); }
+
+dl.info {
+  transition-duration: 500ms;
+  transition-property: opacity, visibility;
+}
+
+/* hide smoothly when hidden attribute is applied */
+dl.info[hidden]:not(:hover, :focus-within) {
+  opacity: 0;
+  visibility: hidden;
+}

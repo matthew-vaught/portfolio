@@ -215,6 +215,11 @@ function updateTooltipPosition(event) {
   tip.style.top  = `${event.clientY + OFFSET}px`;
 }
 
+function updateTooltipVisibility(isVisible) {
+  const tooltip = document.getElementById('commit-tooltip');
+  tooltip.hidden = !isVisible;
+}
+
 // ===== run everything =====
 const data = await loadData();
 const commits = processCommits(data);
