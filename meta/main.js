@@ -103,7 +103,75 @@ function renderCommitInfo(data, commits) {
   row('Most active period', mostActivePeriod);
 }
 
-// --- run everything ---
+function renderScatterPlot(data, commits) {
+  // --- dimensions ---
+  const width = 1000;
+  const height = 600;
+
+  // --- svg ---
+  const svg = d3
+    .select('#chart')
+    .append('svg')
+    .attr('viewBox', `0 0 ${width} ${height}`)
+    .style('overflow', 'visible');
+
+  // --- scales ---
+  const xScale = d3.scaleTime()
+    .domain(d3.extent(commits, d => d.datetime))
+    .range([0, width])
+    .nice();
+
+  const yScale = d3.scaleLinear()
+    .domain([0, 24])
+    .range([height, 0]);
+
+  // --- margins & usable area ---
+  const margin = { top: 10, right: 10, bottom: 30, left: 40 };
+  const usable = {
+    top: margin.top,
+    right: width - margin.right,
+    bottom: height - margin.bottom,
+    left: margin.left,
+    width: width - margin.left - margin.right,
+    height: height - margin.top - margin.bottom
+  };
+
+  // update ranges with margins
+  xScale.range([usable.left, usable.right]);
+  yScale.range([usable.bottom, usable.top]);
+
+  // --- gridlines (add BEFORE axes) ---
+  svg.append('g')
+    .attr('class', 'gridlines')
+    .attr('transform', `translate(${usable.left}, 0)`)
+    .call(d3.axisLeft(yScale).tickFormat('').tickSize(-usable.width));
+
+  // --- dots ---
+  const dots = svg.append('g').attr('class', 'dots');
+  dots.selectAll('circle')
+    .data(commits)
+    .join('circle')
+    .attr('cx', d => xScale(d.datetime))
+    .attr('cy', d => yScale(d.hourFrac))
+    .attr('r', 4)
+    .attr('fill', 'steelblue');
+
+  // --- axes ---
+  const xAxis = d3.axisBottom(xScale);
+  const yAxis = d3.axisLeft(yScale)
+    .tickFormat(d => String(d % 24).padStart(2, '0') + ':00');
+
+  svg.append('g')
+    .attr('transform', `translate(0, ${usable.bottom})`)
+    .call(xAxis);
+
+  svg.append('g')
+    .attr('transform', `translate(${usable.left}, 0)`)
+    .call(yAxis);
+}
+
+// ===== run everything =====
 const data = await loadData();
 const commits = processCommits(data);
-renderCommitInfo(data, commits);
+renderCommitInfo(data, commits);       // you already added this in Step 1.3
+renderScatterPlot(data, commits);      // <— add this call

@@ -320,3 +320,7 @@ path {
   font-weight: 700;
   font-size: 1.125rem;
 }
+
+/* D3 gridlines */
+.gridlines line { stroke: currentColor; opacity: .15; }
+.gridlines path { display: none; }
