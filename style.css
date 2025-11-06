@@ -298,3 +298,25 @@ h1, h2, h3, h4, h5, h6 {
 path {
   cursor: pointer;
 }
+
+/* Meta stats list */
+.stats {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: .25rem 1rem;
+  margin: 1rem 0 2rem;
+}
+
+.stats dt {
+  margin: 0;
+  font-size: .75rem;
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  opacity: .7; /* or color: var(--muted); if you have one */
+}
+
+.stats dd {
+  margin: 0 0 .5rem 0;
+  font-weight: 700;
+  font-size: 1.125rem;
+}

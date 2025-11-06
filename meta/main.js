@@ -50,11 +50,60 @@ function processCommits(data) {
     });
 }
 
-// 4) Run the pipeline
+// --- render summary stats into #stats as a <dl> ---
+
+function renderCommitInfo(data, commits) {
+  const dl = d3.select('#stats').append('dl').attr('class', 'stats');
+
+  // Basic numbers
+  const totalLOC = data.length;           // rows == lines
+  const totalCommits = commits.length;
+
+  // Distinct files
+  const filesCount = d3.group(data, d => d.file).size;
+
+  // Aggregates over whole dataset
+  const maxDepth = d3.max(data, d => d.depth);
+  const longestLine = d3.max(data, d => d.length);
+
+  // Per-file aggregates → then summarize
+  // max line number per file ≈ file length (in lines)
+  const perFileMaxLine = d3.rollups(
+    data,
+    v => d3.max(v, d => d.line),
+    d => d.file
+  ); // => [ [file, maxLine], ... ]
+  const maxLines = d3.max(perFileMaxLine, d => d[1]);
+  const avgFileLength = Math.round(d3.mean(perFileMaxLine, d => d[1]));
+
+  // Time-of-day with most work (morning/afternoon/evening/night)
+  const workByPeriod = d3.rollups(
+    data,
+    v => v.length,
+    d => new Date(d.datetime).toLocaleString('en', { dayPeriod: 'short' })
+  ); // => [ ['morning', n], ... ]
+  const mostActivePeriod = d3.greatest(workByPeriod, d => d[1])?.[0] ?? 'n/a';
+
+  // Helper to add a row (dt + dd)
+  const row = (label, value, useHtml = false) => {
+    useHtml
+      ? dl.append('dt').html(label)
+      : dl.append('dt').text(label);
+    dl.append('dd').text(value);
+  };
+
+  // Render rows (matches the screenshot/order style)
+  row('Total <abbr title="Lines of code">LOC</abbr>', totalLOC, true);
+  row('Total commits', totalCommits);
+  row('Files', filesCount);
+  row('Max depth', maxDepth);
+  row('Longest line', longestLine);
+  row('Max lines (file)', maxLines);
+  row('Avg file length', avgFileLength);
+  row('Most active period', mostActivePeriod);
+}
+
+// --- run everything ---
 const data = await loadData();
 const commits = processCommits(data);
-
-// (Optional) Inspect in console per the instructions
-console.log('commits:', commits);
-
-// You’ll use #stats later to render summaries/visuals
+renderCommitInfo(data, commits);
