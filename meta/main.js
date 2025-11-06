@@ -146,28 +146,39 @@ function renderScatterPlot(data, commits) {
     .attr('transform', `translate(${usable.left}, 0)`)
     .call(d3.axisLeft(yScale).tickFormat('').tickSize(-usable.width));
 
+  // --- radius scale (Step 4.1 & 4.2) ---
+  const [minLines, maxLines] = d3.extent(commits, d => d.totalLines);
+  const rScale = d3.scaleSqrt() // square-root scale fixes visual perception
+    .domain([minLines, maxLines])
+    .range([3, 18]); // adjust range if you want bigger/smaller dots
+
+  // --- sort commits so smaller dots appear on top (Step 4.3) ---
+  const sortedCommits = d3.sort(commits, d => -d.totalLines);
+
   // --- dots ---
   const dots = svg.append('g').attr('class', 'dots');
   dots
     .selectAll('circle')
-    .data(commits)
+    .data(sortedCommits)
     .join('circle')
     .attr('cx', d => xScale(d.datetime))
     .attr('cy', d => yScale(d.hourFrac))
-    .attr('r', 5)
+    .attr('r', d => rScale(d.totalLines))
     .attr('fill', 'steelblue')
+    .style('fill-opacity', 0.7)
     .on('mouseenter', (event, commit) => {
-        renderTooltipContent(commit);
-        updateTooltipVisibility(true);
-        updateTooltipPosition(event);
+      d3.select(event.currentTarget).style('fill-opacity', 1);
+      renderTooltipContent(commit);
+      updateTooltipVisibility(true);
+      updateTooltipPosition(event);
     })
     .on('mousemove', (event) => {
-        updateTooltipPosition(event);
+      updateTooltipPosition(event);
     })
-    .on('mouseleave', () => {
-        updateTooltipVisibility(false);
+    .on('mouseleave', (event) => {
+      d3.select(event.currentTarget).style('fill-opacity', 0.7);
+      updateTooltipVisibility(false);
     });
-
 
   // --- axes ---
   const xAxis = d3.axisBottom(xScale);
