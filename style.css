@@ -347,14 +347,13 @@ dl.info dd { margin: 0 0 .25rem 0; font-weight: 600; }
   top: 1rem;
   left: 1rem;
   padding: .75rem .9rem;
-  background: rgba(20,20,20,.85);       /* dark theme-friendly */
+  background: rgba(20,20,20,.85);
   color: inherit;
   border-radius: .5rem;
   box-shadow: 0 8px 24px rgba(0,0,0,.25);
   backdrop-filter: blur(4px);
   z-index: 1000;
-  pointer-events: none;                  /* don't steal hover */
-  display: none;                         /* hidden by default */
+  pointer-events: none; /* don't steal hover */
 }
 .tooltip.visible { display: block; }
 

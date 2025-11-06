@@ -202,9 +202,9 @@ function renderTooltipContent(commit) {
   linesEl.textContent = String(commit.totalLines ?? commit.lines?.length ?? '—');
 }
 
-function updateTooltipVisibility(show) {
-  const tip = document.getElementById('commit-tooltip');
-  tip.classList.toggle('visible', !!show);
+function updateTooltipVisibility(isVisible) {
+  const tooltip = document.getElementById('commit-tooltip');
+  tooltip.hidden = !isVisible;
 }
 
 function updateTooltipPosition(event) {
@@ -213,11 +213,6 @@ function updateTooltipPosition(event) {
   const OFFSET = 12;
   tip.style.left = `${event.clientX + OFFSET}px`;
   tip.style.top  = `${event.clientY + OFFSET}px`;
-}
-
-function updateTooltipVisibility(isVisible) {
-  const tooltip = document.getElementById('commit-tooltip');
-  tooltip.hidden = !isVisible;
 }
 
 // ===== run everything =====
