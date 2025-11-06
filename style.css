@@ -375,3 +375,18 @@ dl.info[hidden]:not(:hover, :focus-within) {
   opacity: 0;
   visibility: hidden;
 }
+
+/* Brushing rectangle (“marching ants”) */
+@keyframes marching-ants {
+  to { stroke-dashoffset: -8; }
+}
+.selection {
+  fill-opacity: 0.1;
+  stroke: currentColor;
+  stroke-opacity: 0.7;
+  stroke-dasharray: 5 3;
+  animation: marching-ants 2s linear infinite;
+}
+
+/* Make selected dots stand out */
+circle.selected { fill: #ff6b6b; }
