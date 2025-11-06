@@ -20,6 +20,7 @@ function processCommits(data) {
     .groups(data, (d) => d.commit)
     .map(([commit, lines]) => {
       const f = lines[0];
+
       const ret = {
         id: commit,
         url: `https://github.com/matthew-vaught/portfolio/commit/${commit}`,
@@ -31,13 +32,15 @@ function processCommits(data) {
         hourFrac: f.datetime.getHours() + f.datetime.getMinutes() / 60,
         totalLines: lines.length,
       };
-      // keep original lines (hidden)
-      Object.defineProperty(ret, { 
-        value: lines, enumerable: false, writable: false, configurable: false 
-      });
+
+      // keep original lines (hidden, non-enumerable)
       Object.defineProperty(ret, 'lines', {
-        value: lines, enumerable: false, writable: false, configurable: false
+        value: lines,
+        enumerable: false,
+        writable: false,
+        configurable: false
       });
+
       return ret;
     });
 }
