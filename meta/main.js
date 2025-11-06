@@ -148,13 +148,26 @@ function renderScatterPlot(data, commits) {
 
   // --- dots ---
   const dots = svg.append('g').attr('class', 'dots');
-  dots.selectAll('circle')
+  dots
+    .selectAll('circle')
     .data(commits)
     .join('circle')
     .attr('cx', d => xScale(d.datetime))
     .attr('cy', d => yScale(d.hourFrac))
-    .attr('r', 4)
-    .attr('fill', 'steelblue');
+    .attr('r', 5)
+    .attr('fill', 'steelblue')
+    .on('mouseenter', (event, commit) => {
+        renderTooltipContent(commit);
+        updateTooltipVisibility(true);
+        updateTooltipPosition(event);
+    })
+    .on('mousemove', (event) => {
+        updateTooltipPosition(event);
+    })
+    .on('mouseleave', () => {
+        updateTooltipVisibility(false);
+    });
+
 
   // --- axes ---
   const xAxis = d3.axisBottom(xScale);
@@ -168,6 +181,38 @@ function renderScatterPlot(data, commits) {
   svg.append('g')
     .attr('transform', `translate(${usable.left}, 0)`)
     .call(yAxis);
+}
+
+function renderTooltipContent(commit) {
+  // ignore empty objects
+  if (!commit || Object.keys(commit).length === 0) return;
+
+  const link   = document.getElementById('commit-link');
+  const dateEl = document.getElementById('commit-date');
+  const timeEl = document.getElementById('commit-time');
+  const authEl = document.getElementById('commit-author');
+  const linesEl= document.getElementById('commit-lines');
+
+  link.href = commit.url;
+  link.textContent = commit.id;
+
+  dateEl.textContent = commit.datetime.toLocaleString('en', { dateStyle: 'full' });
+  timeEl.textContent = commit.datetime.toLocaleTimeString('en', { hour: '2-digit', minute: '2-digit' });
+  authEl.textContent = commit.author ?? '—';
+  linesEl.textContent = String(commit.totalLines ?? commit.lines?.length ?? '—');
+}
+
+function updateTooltipVisibility(show) {
+  const tip = document.getElementById('commit-tooltip');
+  tip.classList.toggle('visible', !!show);
+}
+
+function updateTooltipPosition(event) {
+  const tip = document.getElementById('commit-tooltip');
+  // offset a bit from the cursor
+  const OFFSET = 12;
+  tip.style.left = `${event.clientX + OFFSET}px`;
+  tip.style.top  = `${event.clientY + OFFSET}px`;
 }
 
 // ===== run everything =====
