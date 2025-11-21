@@ -1,70 +1,57 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Meta</title>
-    <link rel="stylesheet" href="../style.css" />
-    <script type="module" src="../global.js"></script>
-  </head>
-  <body>
-    <main>
-      <h1>Meta</h1>
-      <p>This page includes stats and an interactive narrative of this site’s codebase over time.</p>
-    </main>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meta</title>
+  <link rel="stylesheet" href="../style.css" />
+  <script type="module" src="../global.js"></script>
+</head>
+<body>
+  <main>
+    <h1>Meta</h1>
+    <p>This page includes stats about the code of this website.</p>
+  </main>
 
-    <div id="scrolly-1">
-      <div id="scatter-story">
-        <p>Scroll down to follow the evolution of this portfolio through its commits.</p>
-      </div>
+  <!-- Top stats -->
+  <div id="stats"></div>
 
-      <div id="scatter-plot">
-        <div class="commit-filter">
-          <label>
-            Show commits until:
-            <input
-              id="commit-progress"
-              type="range"
-              min="0"
-              max="100"
-              value="100"
-            />
-            <time id="commit-time"></time>
-          </label>
-        </div>
+  <h2>Evolution over time</h2>
 
-        <div id="stats"></div>
+  <!-- Scrollytelling container -->
+  <div id="scrolly-1">
+    <!-- Left: narrative text, one step per commit -->
+    <div id="scatter-story"></div>
 
-        <h2>Commits by time of day</h2>
-        <div id="chart"></div>
-
-        <p id="selection-count">No commits selected</p>
-        <dl id="language-breakdown" class="stats"></dl>
-
-        <dl id="commit-tooltip" class="info tooltip" hidden>
-          <dt>Commit</dt>
-          <dd>
-            <a href="" id="commit-link" target="_blank" rel="noopener">—</a>
-          </dd>
-
-          <dt>Date</dt>
-          <dd id="commit-date">—</dd>
-
-          <dt>Time</dt>
-          <dd id="commit-time">—</dd>
-
-          <dt>Author</dt>
-          <dd id="commit-author">—</dd>
-
-          <dt>Lines edited</dt>
-          <dd id="commit-lines">—</dd>
-        </dl>
-      </div>
+    <!-- Right: sticky scatter plot -->
+    <div id="scatter-plot">
+      <h2>Commits by time of day</h2>
+      <div id="chart"></div>
     </div>
+  </div>
 
-    <!-- Unit visualization: race for the biggest file -->
-    <dl id="files"></dl>
+  <h2>Codebase evolution</h2>
+  <!-- Unit visualization of files + lines -->
+  <dl id="files"></dl>
 
-    <script type="module" src="main.js"></script>
-  </body>
-</html>
+  <!-- Commit tooltip -->
+  <dl id="commit-tooltip" class="info tooltip" hidden>
+    <dt>Commit</dt>
+    <dd><a href="" id="commit-link" target="_blank" rel="noopener">—</a></dd>
+
+    <dt>Date</dt>
+    <dd id="commit-date">—</dd>
+
+    <dt>Time</dt>
+    <dd id="commit-time">—</dd>
+
+    <dt>Author</dt>
+    <dd id="commit-author">—</dd>
+
+    <dt>Lines edited</dt>
+    <dd id="commit-lines">—</dd>
+  </dl>
+
+  <script type="module" src="main.js"></script>
+</body>
+</html
