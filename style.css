@@ -194,11 +194,17 @@ circle {
    SCROLLYTELLING
 ======================== */
 
+#chart {
+  min-height: 500px;
+  width: 100%;
+}
+
 #scrolly-1 {
   display: flex;
   gap: 2rem;
   position: relative;
   margin-block: 2rem;
+  min-height: 100vh;
 }
 
 #scrolly-1 > * {
@@ -207,6 +213,9 @@ circle {
 
 #scatter-story {
   max-width: 40ch;
+  max-height: 75vh;
+  overflow-y: auto;
+  padding-right: 0.5rem;
 }
 
 #scatter-plot {
