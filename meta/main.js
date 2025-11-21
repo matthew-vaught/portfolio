@@ -352,3 +352,7 @@ buildScatterStory(commits);
 updateScatterPlot(data, commits.slice(0, 1));
 updateFileDisplay(commits.slice(0, 1));
 setupScrollytelling(commits, data);
+
+console.log('✅ META SCRIPT LOADED');
+console.log('Commits:', commits.length);
+console.log('First commit:', commits[0]);
