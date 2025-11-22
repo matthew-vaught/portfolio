@@ -200,36 +200,33 @@ circle {
 }
 
 #scrolly-1 {
-  display: flex;
-  gap: 2rem;
-  position: relative;
-  margin-block: 2rem;
-  min-height: 100vh;
-}
-
-#scrolly-1 > * {
-  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 3rem;
+  margin-block: 4rem;
 }
 
 #scatter-story {
-  max-width: 40ch;
-  max-height: 75vh;
-  overflow-y: auto;
-  padding-right: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
 }
 
 #scatter-plot {
   position: sticky;
-  top: 2rem;
-  height: 60vh;
-  margin-left: 1rem;
+  top: 120px;
 }
 
-/* Each step paragraph */
 #scatter-story .step {
-  padding-bottom: 3.5rem;
-  font-size: 1rem;
-  line-height: 1.4;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  opacity: 0.5;
+  transition: all 0.3s ease;
+}
+
+#scatter-story .step.is-active {
+  opacity: 1;
+  font-weight: 600;
 }
 
 /* ========================

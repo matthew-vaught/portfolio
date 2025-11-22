@@ -8,6 +8,7 @@
   <script type="module" src="../global.js"></script>
 </head>
 <body>
+
   <main>
     <h1>Meta</h1>
     <p>This page includes stats about the code of this website.</p>
@@ -18,12 +19,11 @@
 
   <h2>Evolution over time</h2>
 
-  <!-- Scrollytelling container -->
   <div id="scrolly-1">
-    <!-- Left: narrative text, one step per commit -->
+    <!-- Left: narrative -->
     <div id="scatter-story"></div>
 
-    <!-- Right: sticky scatter plot -->
+    <!-- Right: sticky chart -->
     <div id="scatter-plot">
       <h2>Commits by time of day</h2>
       <div id="chart"></div>
@@ -31,13 +31,13 @@
   </div>
 
   <h2>Codebase evolution</h2>
-  <!-- Unit visualization of files + lines -->
+
   <dl id="files"></dl>
 
-  <!-- Commit tooltip -->
+  <!-- Tooltip -->
   <dl id="commit-tooltip" class="info tooltip" hidden>
     <dt>Commit</dt>
-    <dd><a href="" id="commit-link" target="_blank" rel="noopener">—</a></dd>
+    <dd><a href="" id="commit-link" target="_blank">—</a></dd>
 
     <dt>Date</dt>
     <dd id="commit-date">—</dd>
