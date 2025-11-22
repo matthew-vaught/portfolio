@@ -212,9 +212,11 @@ circle {
   gap: 3rem;
 }
 
+/* KEEP SCATTER PLOT VISIBLE */
 #scatter-plot {
   position: sticky;
   top: 120px;
+  align-self: start;
 }
 
 #scatter-story .step {
@@ -229,52 +231,19 @@ circle {
   font-weight: 600;
 }
 
+
 /* ========================
    CODEBASE EVOLUTION
 ======================== */
 
+/* This makes the code dots stay in view while scrolling text */
 #files {
   display: grid;
   grid-template-columns: 1fr 4fr;
   gap: 1rem 1.5rem;
   margin-block: 3rem;
-}
 
-#files > div {
-  display: grid;
-  grid-template-columns: subgrid;
-  grid-column: 1 / -1;
-  align-items: start;
-}
-
-#files dt {
-  grid-column: 1;
-  margin: 0;
-}
-
-#files dt code {
-  font-family: ui-monospace, monospace;
-}
-
-#files dt small {
-  display: block;
-  font-size: 0.7rem;
-  opacity: .7;
-  margin-top: 0.25rem;
-}
-
-#files dd {
-  grid-column: 2;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.2em;
-  padding-top: .6em;
-  margin-left: 0;
-}
-
-.loc {
-  width: .5em;
-  aspect-ratio: 1;
-  border-radius: 50%;
-  background: var(--color, steelblue);
+  position: sticky;
+  top: 120px;
+  align-self: start;
 }
