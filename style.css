@@ -358,6 +358,11 @@ circle:hover {
    TOOLTIP
 ======================== */
 
+/* Hide tooltip by default */
+dl.info {
+  display: none;
+}
+
 /* Only show when JS adds .visible */
 dl.info.visible {
   display: grid;
@@ -380,6 +385,8 @@ dl.info dd {
 
 .tooltip {
   position: fixed;
+  top: 1rem;
+  left: 1rem;
   padding: .75rem .9rem;
   background: rgba(20,20,20,.85);
   border-radius: .5rem;
