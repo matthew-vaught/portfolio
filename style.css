@@ -4,9 +4,6 @@ html {
 }
 
 body {
-  /* Set line height to 1.5 times the font size
-     and use the OS’s UI font as the website font
-  */
   font: 100%/1.5 system-ui;
   max-width: 100ch;
   margin-inline: max(1em, (100% - 100ch) / 2);
@@ -15,6 +12,10 @@ body {
   position: relative;
   padding-top: 2.25rem;
 }
+
+/* ========================
+   COLOR SCHEME SWITCHER
+======================== */
 
 .color-scheme {
   position: absolute;
@@ -30,6 +31,10 @@ body {
 .color-scheme select { 
   font: inherit; 
 }
+
+/* ========================
+   NAV BAR
+======================== */
 
 .nav_bar {
   display: flex;
@@ -127,6 +132,7 @@ h1, h2, h3 {
   stroke: currentColor; 
   opacity: .15; 
 }
+
 .gridlines path { 
   display: none; 
 }
@@ -191,7 +197,7 @@ circle {
 }
 
 /* ========================
-   SCROLLYTELLING
+   SCROLLYTELLING - SECTION 1
 ======================== */
 
 #chart {
@@ -206,85 +212,83 @@ circle {
   margin-block: 4rem;
 }
 
-#scrolly-2 {
-  display: flex;
-  gap: 2rem;
-  margin-block: 4rem;
-}
-
-#scrolly-2 > * {
-  flex: 1;
-}
-
-#files-panel {
-  position: sticky;
-  top: 2rem;
-  align-self: start;
-  max-height: 80vh;
-  overflow: hidden;
-}
-
-#commit-story {
-  max-width: 40ch;
-  padding-left: 1rem;
-}
-
 #scatter-story {
   display: flex;
   flex-direction: column;
-  gap: 3rem;
+  gap: 4rem;
 }
 
-/* KEEP SCATTER PLOT VISIBLE */
 #scatter-plot {
   position: sticky;
   top: 120px;
   align-self: start;
 }
 
-#scatter-story .step {
-  font-size: 1.05rem;
-  line-height: 1.5;
-  opacity: 0.5;
-  transition: all 0.3s ease;
+/* ========================
+   SCROLLYTELLING - SECTION 2
+======================== */
+
+#scrolly-2 {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 3rem;
+  margin-block: 4rem;
 }
 
-#scatter-story .step.is-active {
-  opacity: 1;
-  font-weight: 600;
+#commit-story {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
 }
 
+#files-panel {
+  position: sticky;
+  top: 120px;
+  align-self: start;
+}
 
 /* ========================
    CODEBASE EVOLUTION
 ======================== */
 
-/* This makes the code dots stay in view while scrolling text */
 #files {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  gap: 1.5rem 2rem;
 }
 
 #files > div {
-  display: flex;
-  gap: 2rem;
+  display: contents;
 }
 
 #files dt {
-  min-width: 200px;
+  grid-column: 1;
+  margin: 0;
+}
+
+#files dt code {
+  font-family: ui-monospace, monospace;
+}
+
+#files dt small {
+  display: block;
+  font-size: .7rem;
+  opacity: .7;
+  margin-top: .3rem;
 }
 
 #files dd {
+  grid-column: 2;
   display: flex;
   flex-wrap: wrap;
-  max-width: 40ch;
-  gap: 4px;
+  gap: .25rem;
+  margin: 0;
 }
 
+/* each dot */
 .loc {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: var(--color, steelblue);
 }

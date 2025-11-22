@@ -4,45 +4,60 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Meta</title>
+
   <link rel="stylesheet" href="../style.css" />
   <script type="module" src="../global.js"></script>
 </head>
-<body>
 
+<body>
   <main>
     <h1>Meta</h1>
     <p>This page includes stats about the code of this website.</p>
   </main>
 
-  <!-- Top stats -->
+  <!-- ========================
+       TOP STATS
+  ========================= -->
   <div id="stats"></div>
 
   <h2>Evolution over time</h2>
 
+  <!-- ========================
+       SCROLLYTELLING: COMMITS
+  ========================= -->
   <div id="scrolly-1">
-    <!-- Left: narrative -->
+
+    <!-- LEFT: TEXT -->
     <div id="scatter-story"></div>
 
-    <!-- Right: sticky chart -->
+    <!-- RIGHT: STICKY PLOT -->
     <div id="scatter-plot">
       <h2>Commits by time of day</h2>
       <div id="chart"></div>
     </div>
+
   </div>
 
+  <!-- ========================
+       CODEBASE EVOLUTION
+  ========================= -->
   <h2>Codebase evolution</h2>
 
   <div id="scrolly-2">
-    <!-- Left: sticky dots grid -->
+
+    <!-- LEFT: TEXT -->
+    <div id="commit-story"></div>
+
+    <!-- RIGHT: STICKY FILE DOTS -->
     <div id="files-panel">
       <dl id="files"></dl>
     </div>
 
-    <!-- Right: scrolling commit text -->
-    <div id="commit-story"></div>
   </div>
 
-  <!-- Tooltip -->
+  <!-- ========================
+       TOOLTIP
+  ========================= -->
   <dl id="commit-tooltip" class="info tooltip" hidden>
     <dt>Commit</dt>
     <dd><a href="" id="commit-link" target="_blank">—</a></dd>
