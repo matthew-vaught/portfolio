@@ -206,6 +206,29 @@ circle {
   margin-block: 4rem;
 }
 
+#scrolly-2 {
+  display: flex;
+  gap: 2rem;
+  margin-block: 4rem;
+}
+
+#scrolly-2 > * {
+  flex: 1;
+}
+
+#files-panel {
+  position: sticky;
+  top: 2rem;
+  align-self: start;
+  max-height: 80vh;
+  overflow: hidden;
+}
+
+#commit-story {
+  max-width: 40ch;
+  padding-left: 1rem;
+}
+
 #scatter-story {
   display: flex;
   flex-direction: column;
@@ -238,12 +261,30 @@ circle {
 
 /* This makes the code dots stay in view while scrolling text */
 #files {
-  display: grid;
-  grid-template-columns: 1fr 4fr;
-  gap: 1rem 1.5rem;
-  margin-block: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
 
-  position: sticky;
-  top: 120px;
-  align-self: start;
+#files > div {
+  display: flex;
+  gap: 2rem;
+}
+
+#files dt {
+  min-width: 200px;
+}
+
+#files dd {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 40ch;
+  gap: 4px;
+}
+
+.loc {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color, steelblue);
 }
