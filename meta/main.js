@@ -102,16 +102,20 @@ function updateScatter(commits) {
     .attr("fill","steelblue")
     .attr("opacity",.7)
     .on("mouseenter",(e,d)=>{
-      showTooltip(d);
+      showTooltip(e, d);
     })
     .on("mouseleave", hideTooltip);
 }
 
 // ---------- Tooltip ----------
-function showTooltip(d){
+function showTooltip(e, d){
   const t = document.getElementById("commit-tooltip");
-  t.hidden = false;
+
   t.classList.add("visible");
+
+  t.style.left = (e.pageX + 15) + "px";
+  t.style.top  = (e.pageY + 15) + "px";
+
   document.getElementById("commit-link").textContent = d.id;
   document.getElementById("commit-link").href = d.url;
   document.getElementById("commit-date").textContent = d.datetime.toDateString();
