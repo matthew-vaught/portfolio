@@ -2,9 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Meta</title>
-
   <link rel="stylesheet" href="../style.css" />
   <script type="module" src="../global.js"></script>
 </head>
@@ -15,52 +14,50 @@
     <p>This page includes stats about the code of this website.</p>
   </main>
 
-  <!-- ========================
-       TOP STATS
-  ========================= -->
+  <!-- ================= Stats ================= -->
   <div id="stats"></div>
+
+  <!-- =====================================================
+       SECTION 1 → COMMITS BY TIME OF DAY (SCROLLY)
+  ====================================================== -->
 
   <h2>Evolution over time</h2>
 
-  <!-- ========================
-       SCROLLYTELLING: COMMITS
-  ========================= -->
   <div id="scrolly-1">
-
-    <!-- LEFT: TEXT -->
+    <!-- Scrolling story -->
     <div id="scatter-story"></div>
 
-    <!-- RIGHT: STICKY PLOT -->
+    <!-- Sticky chart -->
     <div id="scatter-plot">
       <h2>Commits by time of day</h2>
       <div id="chart"></div>
     </div>
-
   </div>
 
-  <!-- ========================
-       CODEBASE EVOLUTION
-  ========================= -->
+
+  <!-- =====================================================
+       SECTION 2 → CODEBASE EVOLUTION (SCROLLY)
+  ====================================================== -->
+
   <h2>Codebase evolution</h2>
 
   <div id="scrolly-2">
-
-    <!-- LEFT: TEXT -->
+    <!-- Scrolling commits again -->
     <div id="commit-story"></div>
 
-    <!-- RIGHT: STICKY FILE DOTS -->
+    <!-- Sticky files visualization -->
     <div id="files-panel">
       <dl id="files"></dl>
     </div>
-
   </div>
 
-  <!-- ========================
-       TOOLTIP
-  ========================= -->
+
+  <!-- Tooltip for commits -->
   <dl id="commit-tooltip" class="info tooltip" hidden>
     <dt>Commit</dt>
-    <dd><a href="" id="commit-link" target="_blank">—</a></dd>
+    <dd>
+      <a href="" id="commit-link" target="_blank" rel="noopener">—</a>
+    </dd>
 
     <dt>Date</dt>
     <dd id="commit-date">—</dd>

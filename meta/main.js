@@ -1,211 +1,218 @@
 import * as d3 from "https://cdn.jsdelivr.net/npm/d3@7/+esm";
 import scrollama from "https://cdn.jsdelivr.net/npm/scrollama@3.2.0/+esm";
 
-// ================= LOAD DATA =================
-
+// ---------- Load ----------
 async function loadData() {
-  const data = await d3.csv("loc.csv", (row) => ({
-    ...row,
-    line: +row.line,
-    depth: +row.depth,
-    length: +row.length,
-    date: new Date(row.date + "T00:00" + row.timezone),
-    datetime: new Date(row.datetime),
+  return await d3.csv("loc.csv", d => ({
+    ...d,
+    line: +d.line,
+    depth: +d.depth,
+    length: +d.length,
+    date: new Date(d.date + "T00:00" + d.timezone),
+    datetime: new Date(d.datetime)
   }));
-
-  return data;
 }
 
-// ================= PROCESS COMMITS =================
-
+// ---------- Commits ----------
 function processCommits(data) {
-  const grouped = d3.groups(data, d => d.commit).map(([commit, lines]) => {
-    const f = lines[0];
+  const grouped = d3.groups(data, d => d.commit)
+    .map(([id, lines]) => {
+      const f = lines[0];
 
-    const ret = {
-      id: commit,
-      url: `https://github.com/matthew-vaught/portfolio/commit/${commit}`,
-      author: f.author,
-      datetime: f.datetime,
-      hourFrac: f.datetime.getHours() + f.datetime.getMinutes() / 60,
-      totalLines: lines.length,
-      lines: lines
-    };
+      const obj = {
+        id,
+        url: `https://github.com/matthew-vaught/portfolio/commit/${id}`,
+        author: f.author,
+        datetime: f.datetime,
+        hourFrac: f.datetime.getHours() + f.datetime.getMinutes() / 60,
+        totalLines: lines.length
+      };
 
-    return ret;
-  });
+      Object.defineProperty(obj, "lines", {
+        value: lines, enumerable: false
+      });
 
-  return d3.sort(grouped, d => d.datetime);
+      return obj;
+    });
+
+  return grouped.sort((a,b) => a.datetime - b.datetime);
 }
 
-// ================= STATS =================
-
+// ---------- Top Stats ----------
 function renderCommitInfo(data, commits) {
-  const dl = d3.select("#stats")
-    .append("dl")
-    .attr("class", "stats");
+  const dl = d3.select("#stats").append("dl").attr("class","stats");
 
-  const totalLOC = data.length;
-  const totalCommits = commits.length;
-  const filesCount = new Set(data.map(d => d.file)).size;
-  const maxDepth = d3.max(data, d => d.depth);
-  const longestLine = d3.max(data, d => d.length);
+  const row = (k,v) => {
+    dl.append("dt").html(k);
+    dl.append("dd").text(v);
+  }
 
-  const row = (label, value) => {
-    dl.append("dt").html(label);
-    dl.append("dd").text(value);
-  };
-
-  row("Commits", totalCommits);
-  row("Files", filesCount);
-  row("LOC", totalLOC);
-  row("Max depth", maxDepth);
-  row("Longest line", longestLine);
+  row("Commits", commits.length);
+  row("Files", new Set(data.map(d => d.file)).size);
+  row("Total LOC", data.length);
+  row("Max depth", d3.max(data,d=>d.depth));
 }
 
-// ================= SCATTER PLOT =================
-
+// ---------- Scatter ----------
 let xScale, yScale;
 
 function renderScatterPlot(commits) {
-  const width = 800;
-  const height = 500;
-  const margin = { top: 20, right: 20, bottom: 40, left: 60 };
+  const width = 1000, height = 600;
 
-  const svg = d3.select("#chart")
-    .append("svg")
-    .attr("viewBox", `0 0 ${width} ${height}`);
+  const svg = d3.select("#chart").append("svg")
+    .attr("viewBox",`0 0 ${width} ${height}`);
+
+  const margin = {top:20,right:20,bottom:40,left:50};
 
   xScale = d3.scaleTime()
-    .domain(d3.extent(commits, d => d.datetime))
-    .range([margin.left, width - margin.right]);
+    .domain(d3.extent(commits,d=>d.datetime))
+    .range([margin.left,width-margin.right]);
 
   yScale = d3.scaleLinear()
-    .domain([0, 24])
-    .range([height - margin.bottom, margin.top]);
-
-  const y_axis = d3.axisLeft(yScale).tickFormat(d => `${String(d).padStart(2, "0")}:00`);
-  const x_axis = d3.axisBottom(xScale);
+    .domain([0,24])
+    .range([height-margin.bottom,margin.top]);
 
   svg.append("g")
-    .attr("transform", `translate(${margin.left},0)`)
-    .call(y_axis);
+    .attr("transform",`translate(0,${height-margin.bottom})`)
+    .call(d3.axisBottom(xScale));
 
   svg.append("g")
-    .attr("transform", `translate(0,${height - margin.bottom})`)
-    .call(x_axis);
+    .attr("transform",`translate(${margin.left},0)`)
+    .call(d3.axisLeft(yScale).tickFormat(d => String(d).padStart(2,'0')+":00"));
 
-  svg.append("g").attr("class", "dots");
+  svg.append("g")
+    .attr("class","dots");
 }
 
-function updateScatterPlot(commits) {
+function updateScatter(commits) {
+
   const svg = d3.select("#chart svg");
-  const dots = svg.select("g.dots");
+  const dots = svg.select(".dots");
 
   const rScale = d3.scaleSqrt()
-    .domain(d3.extent(commits, d => d.totalLines))
-    .range([4, 28]);
+    .domain(d3.extent(commits,d=>d.totalLines))
+    .range([3,30]);
 
   dots.selectAll("circle")
-    .data(commits, d => d.id)
+    .data(commits,d=>d.id)
     .join("circle")
-    .attr("cx", d => xScale(d.datetime))
-    .attr("cy", d => yScale(d.hourFrac))
-    .attr("r", d => rScale(d.totalLines))
-    .attr("fill", "steelblue")
-    .attr("opacity", 0.75);
+    .attr("cx", d=>xScale(d.datetime))
+    .attr("cy", d=>yScale(d.hourFrac))
+    .attr("r", d=>rScale(d.totalLines))
+    .attr("fill","steelblue")
+    .attr("opacity",.7)
+    .on("mouseenter",(e,d)=>{
+      showTooltip(d);
+    })
+    .on("mouseleave", hideTooltip);
 }
 
-// ================= FILE VISUALIZATION =================
+// ---------- Tooltip ----------
+function showTooltip(d){
+  const t = document.getElementById("commit-tooltip");
+  t.hidden = false;
+  t.classList.add("visible");
+  document.getElementById("commit-link").textContent = d.id;
+  document.getElementById("commit-link").href = d.url;
+  document.getElementById("commit-date").textContent = d.datetime.toDateString();
+  document.getElementById("commit-time").textContent = d.datetime.toLocaleTimeString();
+  document.getElementById("commit-author").textContent = d.author;
+  document.getElementById("commit-lines").textContent = d.totalLines;
+}
 
+function hideTooltip(){
+  const t = document.getElementById("commit-tooltip");
+  t.hidden = true;
+  t.classList.remove("visible");
+}
+
+// ---------- Files ----------
 const colors = d3.scaleOrdinal(d3.schemeTableau10);
 
-function updateFileDisplay(commits) {
+function updateFiles(commits){
+
   const lines = commits.flatMap(d => d.lines);
 
-  const files = d3.groups(lines, d => d.file)
-    .map(([name, lines]) => ({
-      name,
-      lines
-    }))
-    .sort((a, b) => b.lines.length - a.lines.length);
+  const files = d3.groups(lines,d=>d.file)
+    .map(([name,lines]) => {
+      const type = d3.rollup(lines,v=>v.length,d=>d.type);
+      const domType = Array.from(type).sort((a,b)=>b[1]-a[1])[0][0];
+      return {name,lines, type: domType};
+    });
 
-  const container = d3.select("#files")
+  const sel = d3.select("#files")
     .selectAll("div")
-    .data(files, d => d.name)
-    .join("div");
+    .data(files,d=>d.name)
+    .join(enter => {
+      const d = enter.append("div");
+      d.append("dt").append("code");
+      d.append("dd");
+      return d;
+    });
 
-  container
-    .style("--color", (d, i) => colors(i))
-    .html("");
+  sel.style("--color", d=>colors(d.type));
 
-  container.append("dt")
-    .html(d => `<code>${d.name}</code><small>${d.lines.length} lines</small>`);
+  sel.select("dt code")
+    .html(d=>`${d.name}<small>${d.lines.length} lines</small>`);
 
-  const dots = container.append("dd")
-    .selectAll(".loc")
-    .data(d => d.lines)
+  sel.select("dd")
+    .selectAll("div")
+    .data(d=>d.lines)
     .join("div")
-    .attr("class", "loc");
+    .attr("class","loc");
 }
 
-// ================= STORY =================
-
-function buildScatterStory(commits) {
-  d3.select("#scatter-story")
+// ---------- Story Builders ----------
+function buildStory(target, commits){
+  d3.select(target)
     .selectAll(".step")
     .data(commits)
     .join("div")
-    .attr("class", "step")
-    .html((d, i) => {
-      const when = d.datetime.toLocaleString("en", { dateStyle: "full", timeStyle: "short" });
-      const linkText = i === 0 ? "my first commit" : "another glorious commit";
-
-      const files = new Set(d.lines.map(l => l.file)).size;
-
-      return `
-        On ${when}, I made
-        <a href="${d.url}" target="_blank">${linkText}</a>.
-        I edited ${d.totalLines} lines across ${files} files.
-      `;
+    .attr("class","step")
+    .html((d,i) => {
+      const files = new Set(d.lines.map(l=>l.file)).size;
+      return `On ${d.datetime.toLocaleString()}, I made
+        <a href="${d.url}" target="_blank">a glorious commit</a>.
+        I edited ${d.totalLines} lines across ${files} files.`;
     });
 }
 
-// ================= SCROLLAMA =================
+// ---------- Scrolling ----------
+function setupScrolly(id, commits, callback){
 
-function setupScrollytelling(commits) {
   const scroller = scrollama();
 
-  function onStepEnter({ element }) {
-    const commit = element.__data__;
-    const index = commits.findIndex(d => d.id === commit.id);
+  scroller
+    .setup({
+      container: id,
+      step: `${id} .step`
+    })
+    .onStepEnter(r => {
 
-    d3.selectAll(".step").classed("is-active", false);
-    d3.select(element).classed("is-active", true);
+      d3.selectAll(`${id} .step`)
+        .classed("is-active", d => d.id === r.element.__data__.id);
 
-    const filtered = commits.slice(0, index + 1);
-    updateScatterPlot(filtered);
-    updateFileDisplay(filtered);
-  }
+      const i = commits.findIndex(c => c.id === r.element.__data__.id);
 
-  scroller.setup({
-    step: "#scatter-story .step",
-    offset: 0.6
-  }).onStepEnter(onStepEnter);
+      const filtered = commits.slice(0, i+1);
 
-  window.addEventListener("resize", scroller.resize);
+      callback(filtered);
+    });
 }
 
-// ================= RUN =================
-
+// ---------- RUN ----------
 const data = await loadData();
 const commits = processCommits(data);
 
 renderCommitInfo(data, commits);
 renderScatterPlot(commits);
-buildScatterStory(commits);
+buildStory("#scatter-story", commits);
+buildStory("#commit-story", commits);
 
-updateScatterPlot(commits.slice(0,1));
-updateFileDisplay(commits.slice(0,1));
+// Start state
+updateScatter(commits.slice(0,1));
+updateFiles(commits.slice(0,1));
 
-setupScrollytelling(commits);
+// Activate scrolling
+setupScrolly("#scrolly-1", commits, (c)=>updateScatter(c));
+setupScrolly("#scrolly-2", commits, (c)=>updateFiles(c));

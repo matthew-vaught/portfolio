@@ -14,94 +14,166 @@ body {
 }
 
 /* ========================
-   COLOR SCHEME SWITCHER
+   SCROLLYTELLING LAYOUTS
 ======================== */
 
-.color-scheme {
-  position: absolute;
-  top: .75rem;
-  right: 0;
+/* BOTH sections use same structure */
+#scrolly-1,
+#scrolly-2 {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr;
+  gap: 3rem;
+  margin-block: 4rem;
+}
+
+/* left column (text) */
+#scatter-story,
+#commit-story {
   display: flex;
-  align-items: center;
-  gap: .5rem;
-  font-size: .875rem;
-  z-index: 10;
+  flex-direction: column;
+  gap: 3.5rem;
+  max-width: 45ch;
 }
 
-.color-scheme select { 
-  font: inherit; 
+/* right column (sticky visuals) */
+#scatter-plot,
+#files-panel {
+  position: sticky;
+  top: 3rem;
+  align-self: start;
 }
 
-/* ========================
-   NAV BAR
-======================== */
-
-.nav_bar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: .75rem 0;
-  border-bottom: 1px solid oklch(80% 3% 200);
-  gap: 2rem;
+/* each step paragraph */
+.step {
+  font-size: 1.05rem;
+  line-height: 1.5;
+  opacity: 0.45;
+  transition: all 0.25s ease;
 }
 
-.nav_bar > a {
-  position: relative;
-  flex: 1;
-  text-align: center;
-  text-decoration: none;
-  color: inherit;
-  font-weight: 600;
-  padding: .25rem .5rem;
-}
-
-.nav_bar > a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: -1px;
-  height: 0;
-  background: oklch(55.906% 0.22438 292.066);
-}
-
-.nav_bar > a:hover {
-  background-color: oklch(71.138% 0.13676 297.51);
-}
-
-.nav_bar > a:hover::after {
-  height: .15rem;
-}
-
-.nav_bar > a.current {
-  border-bottom: 1px solid oklch(80% 3% 200);
-}
-
-input, textarea, button, select {
-  font: inherit;
-  color: CanvasText;
-  background: Canvas;
-  border: 1px solid color-mix(in oklch, CanvasText 20%, Canvas);
-}
-
-/* ========================
-   TYPOGRAPHY
-======================== */
-
-h1 {
-  font-size: 400%;
-  font-weight: 700;
-  line-height: 1.1;
-  margin-block: 0.5em;
-}
-
-h1, h2, h3 {
-  line-height: 1.1;
+.step.is-active {
+  opacity: 1;
   font-weight: 600;
 }
 
 /* ========================
-   META STATS
+   SCATTERPLOT
+======================== */
+
+#chart {
+  min-height: 520px;
+  width: 100%;
+}
+
+circle {
+  transition: 200ms;
+  transform-origin: center;
+  transform-box: fill-box;
+}
+
+circle:hover {
+  transform: scale(1.5);
+}
+
+/* gridlines */
+.gridlines line {
+  stroke: currentColor;
+  opacity: 0.15;
+}
+.gridlines path {
+  display: none;
+}
+
+/* ========================
+   TOOLTIP
+======================== */
+
+dl.info {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.25rem 1rem;
+  margin: 0;
+}
+
+dl.info dt {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
+}
+
+dl.info dd {
+  margin: 0 0 0.25rem 0;
+  font-weight: 600;
+}
+
+.tooltip {
+  position: fixed;
+  padding: 0.75rem 0.9rem;
+  background: rgba(20, 20, 20, 0.85);
+  border-radius: 0.5rem;
+  backdrop-filter: blur(4px);
+  z-index: 1000;
+  pointer-events: none;
+}
+
+.tooltip.visible {
+  display: block;
+}
+
+/* ========================
+   CODEBASE EVOLUTION
+======================== */
+
+/* main code panel container */
+#files {
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* each file row */
+#files > div {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+#files dt {
+  min-width: 220px;
+  margin: 0;
+}
+
+#files dt code {
+  font-family: ui-monospace, monospace;
+  font-size: 1rem;
+}
+
+#files dt small {
+  display: block;
+  font-size: 0.7rem;
+  opacity: .7;
+  margin-top: 0.25rem;
+}
+
+/* dots container */
+#files dd {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  max-width: 520px;
+}
+
+/* each dot */
+.loc {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--color, steelblue);
+}
+
+/* ========================
+   STATS PANEL
 ======================== */
 
 .stats {
@@ -112,183 +184,14 @@ h1, h2, h3 {
 }
 
 .stats dt {
-  font-size: .75rem;
+  font-size: 0.75rem;
   text-transform: uppercase;
-  letter-spacing: .08em;
-  opacity: .7;
+  letter-spacing: 0.08em;
+  opacity: 0.7;
 }
 
 .stats dd {
   margin: 0;
   font-weight: 700;
   font-size: 1.2rem;
-}
-
-/* ========================
-   GRID LINES
-======================== */
-
-.gridlines line { 
-  stroke: currentColor; 
-  opacity: .15; 
-}
-
-.gridlines path { 
-  display: none; 
-}
-
-/* ========================
-   TOOLTIP
-======================== */
-
-dl.info {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: .25rem 1rem;
-  margin: 0;
-}
-
-dl.info dt {
-  font-size: .75rem;
-  text-transform: uppercase;
-  letter-spacing: .08em;
-  opacity: .7;
-}
-
-dl.info dd { 
-  margin: 0 0 .25rem 0; 
-  font-weight: 600; 
-}
-
-.tooltip {
-  position: fixed;
-  padding: .75rem .9rem;
-  background: rgba(20,20,20,.85);
-  color: inherit;
-  border-radius: .5rem;
-  box-shadow: 0 8px 24px rgba(0,0,0,.25);
-  backdrop-filter: blur(4px);
-  z-index: 1000;
-  pointer-events: none;
-}
-
-.tooltip.visible { 
-  display: block; 
-}
-
-/* ========================
-   SCATTERPLOT DOTS
-======================== */
-
-circle {
-  transition: 200ms;
-  transform-origin: center;
-  transform-box: fill-box;
-}
-
-circle:hover { 
-  transform: scale(1.5); 
-}
-
-circle {
-  @starting-style {
-    r: 0;
-  }
-}
-
-/* ========================
-   SCROLLYTELLING - SECTION 1
-======================== */
-
-#chart {
-  min-height: 500px;
-  width: 100%;
-}
-
-#scrolly-1 {
-  display: grid;
-  grid-template-columns: 1fr 1.25fr;
-  gap: 3rem;
-  margin-block: 4rem;
-}
-
-#scatter-story {
-  display: flex;
-  flex-direction: column;
-  gap: 4rem;
-}
-
-#scatter-plot {
-  position: sticky;
-  top: 120px;
-  align-self: start;
-}
-
-/* ========================
-   SCROLLYTELLING - SECTION 2
-======================== */
-
-#scrolly-2 {
-  display: grid;
-  grid-template-columns: 1fr 1.25fr;
-  gap: 3rem;
-  margin-block: 4rem;
-}
-
-#commit-story {
-  display: flex;
-  flex-direction: column;
-  gap: 4rem;
-}
-
-#files-panel {
-  position: sticky;
-  top: 120px;
-  align-self: start;
-}
-
-/* ========================
-   CODEBASE EVOLUTION
-======================== */
-
-#files {
-  display: grid;
-  grid-template-columns: 1fr 4fr;
-  gap: 1.5rem 2rem;
-}
-
-#files > div {
-  display: contents;
-}
-
-#files dt {
-  grid-column: 1;
-  margin: 0;
-}
-
-#files dt code {
-  font-family: ui-monospace, monospace;
-}
-
-#files dt small {
-  display: block;
-  font-size: .7rem;
-  opacity: .7;
-  margin-top: .3rem;
-}
-
-#files dd {
-  grid-column: 2;
-  display: flex;
-  flex-wrap: wrap;
-  gap: .25rem;
-  margin: 0;
-}
-
-/* each dot */
-.loc {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--color, steelblue);
 }
