@@ -358,7 +358,13 @@ circle:hover {
    TOOLTIP
 ======================== */
 
+/* Hide tooltip by default */
 dl.info {
+  display: none;
+}
+
+/* Only show when JS adds .visible */
+dl.info.visible {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: .25rem 1rem;
